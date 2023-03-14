@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+}
+.search {
+    width: 35%;
+}
+.frmsearch {
+    display: flex;
+    margin: 15px 0;
+}
+
+.cbo-left:nth-child(2) {
+    margin-left: 20px;
+}
+
+.txtkeyword {
+    margin-left: 20px;
+}
+
+#cboCourse, #cboNamHoc1, #cboHocKy1, #keyword1 {
+    width: 163px;
+    padding: 0;
+    border: 0.8px solid;
+    height: 32px;
+    border-radius: 10px;
+}
+
+#keyword1 {
+    width: 161.4px;
+}
+
+
+#btnSearchCourse {
+    margin-left: 20px;
+    background: url(http://courses.duytan.edu.vn/MasterPages/ctdt.dtu/images/search-bg-button.png) no-repeat left top;
+    border: none;
+    height: 37px;
+    width: 93px;
+}
+
+.schedule {
+    width: 65%;
+}
