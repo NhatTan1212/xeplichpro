@@ -32,7 +32,7 @@
 
 #btnSearchCourse {
     margin-left: 20px;
-    background: url(http://courses.duytan.edu.vn/MasterPages/ctdt.dtu/images/search-bg-button.png) no-repeat left top;
+    background: url(/xeplichpro/public/search-bg-button.png) no-repeat left top;
     border: none;
     height: 37px;
     width: 93px;
