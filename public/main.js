@@ -67,7 +67,7 @@
                 // a.download = "data.json";
                 // a.click();
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'http://localhost:3000/', true);
+                xhr.open('POST', 'https://nhattan1212.github.io/xeplichpro/', true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.onreadystatechange = function() {
                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
