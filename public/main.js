@@ -1,4 +1,10 @@
+import startBrowser from './browser';
+import scrapeController from './scapeController';
+
 // const { scapeHome} = require('./scaper');
+
+// const { data } = require("cheerio/lib/api/attributes");
+
 // const getDataSearchCourse = () => {
         let getnamhoc = document.querySelector('#cboNamHoc1');
         let gethocky = document.querySelector('#cboHocKy1');
@@ -49,35 +55,61 @@
         let monhocvalue
         let mamonvalue
         let getvalues
+
+        fetch('http://localhost:3000/courses')
+        .then(response => response.json())
+        .then(data => {
+                console.log(data.length)
+                var countBtnSearch = data.length;
         
-        btnsearch.onclick = () => {
-                getvalues = {                    
-                        namhocvalue: getnamhoc.value,
-                        hockyvalue: gethocky.value,
-                        monhocvalue: getmonhoc.value,
-                        mamonvalue: getmamon.value
+        
+                btnsearch.onclick = () => {
+                  
+                        countBtnSearch += 1;
+                        getvalues = { 
+                                id: countBtnSearch,
+                                namhocvalue: getnamhoc.value,
+                                hockyvalue: gethocky.value,
+                                monhocvalue: getmonhoc.value,
+                                mamonvalue: getmamon.value
+                        }
+                        console.log(getvalues)
+        
+                        fetch(' http://localhost:3000/courses', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(getvalues)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Data saved successfully!');
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    
+                            
+                            let browser = startBrowser();
+                            scrapeController(browser);
+                        //     fetch('/start')
+                        //     .then((response) => response.text())
+                        //     .then((text) => console.log(text))
+                        //     .catch((error) => console.error(error));
+                            
+                        }
+
+                        
+                        // fetch("http://localhost:3000/newClasses")
+                        //     .then(response => response.json())
+                        //     .then(data => console.log(data))
+                        //     .catch(error => console.error(error));
                 }
-                console.log(getvalues)
+                )
+                .catch(error => console.error(error));
+                
 
-                var jsonData = JSON.stringify(getvalues);
-                // var file = new Blob([jsonData], { type: "application/json" });
-
-                // var a = document.createElement("a");
-                // a.href = URL.createObjectURL(file);
-                // a.download = "data.json";
-                // a.click();
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/xeplichpro/public/dataSearch.json', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.onreadystatechange = function() {
-                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
-                console.log(data);
-                }
-                };
-                xhr.send(jsonData);
-
-        }
 // }
 
 // module.exports = {
